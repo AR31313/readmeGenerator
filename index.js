@@ -1,6 +1,11 @@
 const inquirer = require('inquirer');
 const fs = require("fs");
 
+
+
+
+
+
 inquirer
   .prompt([
     {
@@ -24,18 +29,9 @@ inquirer
       message: "What is this Expected Behavior of the Application"
     },
     {
-      type: "list",
-      name: "install",
-      message: "Is thes an installation process? ",
-      choices: [
-        "Yes",
-        "No",
-      ]
-    },
-    {
       type: "input",
-      name: "installprocess",
-      message: "What is the  for the Application?"
+      name: "install",
+      message: "What is the installation for the Application?"
     },
     {
       type: "list",
@@ -58,18 +54,13 @@ inquirer
     },
     {
       type: "input",
-      name: "tablecontent",
-      message: "what are the Table of Contents?"
-    },
-    {
-      type: "input",
       name: "bugs",
       message: "Are there any known bugs?"
     },
     {
       type: "input",
       name: "repolink",
-      message: "Please post the Application's GitHub repo link ?"
+      message: "Please post the Application's GitHub repo link"
     },
     {
       type: "input",
@@ -84,9 +75,43 @@ inquirer
   ])
 
   .then((data) => {
-    const filename = `${data.username.toLowerCase().split(' ').join('')}.json`;
+    const filename = `./output/README.md`;
+    var badge = ''
+    if (data.license == "Apache") {
+      badge = 'apache licence link'
+    }
 
-    fs.writeFile(filename, JSON.stringify(data, null, '\t'), (err) =>
+
+    var string = `# ${data.projectTitle}
+
+  ## Table of Contents
+    
+  ❤ [Description](#Description)
+    
+  ❤ [Installation](#install)
+    
+  ❤ [Usage](#usage)
+    
+  ❤ [License](#license)
+    
+  ❤ [Contributers](#contributors)
+    
+  ## Description
+    
+  ### ${data.description}
+    
+  ## Install
+    
+  ### ${data.install}
+    
+  ## Usage
+    
+  ## license
+    ${badge}
+  ## contributors
+    `
+
+    fs.writeFile(filename, string, (err) =>
       err ? console.log(err) : console.log('Success!')
     );
   });
