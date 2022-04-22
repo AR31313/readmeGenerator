@@ -1,11 +1,6 @@
 const inquirer = require('inquirer');
 const fs = require("fs");
 
-
-
-
-
-
 inquirer
   .prompt([
     {
@@ -39,9 +34,7 @@ inquirer
       message: "Chose the appropriate license for this project: ",
       choices: [
         "Apache",
-        "Academic",
         "GNU",
-        "ISC",
         "MIT",
         "Mozilla",
         "Open"
@@ -78,23 +71,33 @@ inquirer
     const filename = `./output/README.md`;
     var badge = ''
     if (data.license == "Apache") {
-      badge = 'apache licence link'
+      badge = `[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
+    } else if (data.license == "GNU") {
+      badge = `[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)`
+    } else if (data.license == "MIT") {
+      badge = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+    } else if (data.license == "Mozilla") {
+      badge = `[![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)`
+    } else if (data.license == "Open") {
+      badge = `[![License: ODbL](https://img.shields.io/badge/License-ODbL-brightgreen.svg)](https://opendatacommons.org/licenses/odbl/)`
     }
+
+
 
 
     var string = `# ${data.projectTitle}
 
   ## Table of Contents
     
-  ❤ [Description](#Description)
+  1. [Description](#Description)
     
-  ❤ [Installation](#install)
+  2. [Installation](#install)
     
-  ❤ [Usage](#usage)
+  3. [Usage](#Usage)
     
-  ❤ [License](#license)
+  4. [License](#License)
     
-  ❤ [Contributers](#contributors)
+  5. [Contributers](#Contributors)
     
   ## Description
     
@@ -108,7 +111,8 @@ inquirer
     
   ## license
     ${badge}
-  ## contributors
+    
+  ## Contributors
     `
 
     fs.writeFile(filename, string, (err) =>
