@@ -28,7 +28,7 @@ https://user-images.githubusercontent.com/96843377/164959845-73683a2b-5410-4971-
 
 
 - link :
- ![image](https://user-images.githubusercontent.com/96843377/164959865-a8ca5ef8-8902-41e5-a25c-51e8a9daa5b7.png)
+ https://drive.google.com/file/d/1JPegl8qDLdwbRf2aMjaWVda_3J-fI29g/view?usp=sharing
 
 
 ### Application Github URL:
